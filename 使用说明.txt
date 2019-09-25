@@ -1,5 +1,9 @@
+来源：https://github.com/ArshartCloud/3v32019
+
 使用说明
 将所有文件夹复制到神杀目录下，选择替换
+
+新增貂蝉
 
 修复忠义不分敌我的bug
 

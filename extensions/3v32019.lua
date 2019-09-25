@@ -35,6 +35,7 @@ dianwei3v32019 = sgs.General(extension_3v32019, "dianwei3v32019", "wei", 4, true
 huangyueying3v32019 = sgs.General(extension_3v32019, "huangyueying3v32019", "shu", 3, false)
 zhenji3v32019 = sgs.General(extension_3v32019, "zhenji3v32019", "wei", 3, false)
 sunquan3v32019 =  sgs.General(extension_3v32019, "sunquan3v32019", "wu", 4, true)
+diaochan3v32019 = sgs.General(extension_3v32019, "diaochan3v32019", "qun", 3, false)
 
 choujin = sgs.CreateTriggerSkill{
 	name = "choujin3v32019",
@@ -366,6 +367,22 @@ LuaZhihengCard = sgs.CreateSkillCard{
 
 sunquan3v32019:addSkill(LuaZhiheng)
 
+diaochan3v32019:addSkill("lijian")
+LuaBiyue = sgs.CreatePhaseChangeSkill{
+	name = "LuaBiyue",
+	frequency = sgs.Skill_Frequent,
+	on_phasechange = function(self, player)
+		if player:getPhase() == sgs.Player_Finish then
+			local room = player:getRoom()
+			if room:askForSkillInvoke(player, self:objectName()) then
+				player:drawCards(1, self:objectName())
+			end
+		end
+		return false
+	end
+}
+diaochan3v32019:addSkill(LuaBiyue)
+
 sgs.LoadTranslationTable{
 
     ["3v32019"]="3v3 2019",
@@ -432,6 +449,13 @@ sgs.LoadTranslationTable{
 	["~sunquan3v32019"] = "啊我司了！。",
 	["LuaZhiheng"] = "制衡",
 	[":LuaZhiheng"]= "出牌阶段限一次，你可以弃置至少一张牌：若如此做，你摸等量的牌。",
+
+	["diaochan3v32019"] ="貂蝉3v3",
+    ["&diaochan3v32019"]="貂蝉",
+	["#diaochan3v32019"] = "绝世的舞姬",
+	["~diaochan3v32019"] = "啊我司了！。",
+	["LuaBiyue"] = "闭月",
+	[":LuaBiyue"]= "结束阶段开始时，你可以摸一张牌。",
 }
 
 return {extension_3v32019}
